@@ -7,6 +7,7 @@ import guru.springframework.sfgpetclinic.services.OwnerService;
 import guru.springframework.sfgpetclinic.services.VetService;
 import guru.springframework.sfgpetclinic.services.map.OwnerMapService;
 import guru.springframework.sfgpetclinic.services.map.VetMapService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,14 +18,16 @@ public class DataLoader implements CommandLineRunner {
     private  final OwnerService ownerService;
     private final VetService vetService;
 
-    public DataLoader() {
-        ownerService = new OwnerMapService();
-        vetService = new VetMapService();
+    @Autowired
+    public DataLoader(OwnerService ownerService, VetService vetService) {
+        this.ownerService = ownerService;
+        this.vetService = vetService;
     }
 
     @Override
     public void run(String... args) throws Exception {
         Owner owner1 = new Owner();
+        owner1.setId((long) 1);
         owner1.setFirstName("Michael");
         owner1.setLastName("Weston");
 
@@ -37,6 +40,7 @@ public class DataLoader implements CommandLineRunner {
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
+        owner2.setId(Long.valueOf(2));
         owner2.setFirstName("Fiona");
         owner2.setLastName("Glenanne");
 
@@ -49,6 +53,7 @@ public class DataLoader implements CommandLineRunner {
         System.out.println("Loaded owners");
 
         Vet vet1 = new Vet();
+        vet1.setId(Long.valueOf(1));
         vet1.setFirstName("Sam");
         vet1.setLastName("Axe");
 
@@ -56,6 +61,7 @@ public class DataLoader implements CommandLineRunner {
         vetService.save(vet1);
 
         Vet vet2 = new Vet();
+        vet2.setId(Long.valueOf(2));
         vet2.setFirstName("Jessie");
         vet2.setLastName("Porter");
 
