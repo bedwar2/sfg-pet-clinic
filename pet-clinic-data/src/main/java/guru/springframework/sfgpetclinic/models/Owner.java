@@ -45,5 +45,32 @@ public class Owner extends Person {
         return other instanceof Owner;
     }
 
+    /*
+            * @param name to test
+     * @return true if pet name is already in use
+     */
+    public Pet getPet(String name) {
+        return getPet(name, false);
+    }
+
+    /**
+     * Return the Pet with the given name, or null if none found for this Owner.
+     *
+     * @param name to test
+     * @return true if pet name is already in use
+     */
+    public Pet getPet(String name, boolean ignoreNew) {
+        name = name.toLowerCase();
+        for (Pet pet : pets) {
+            if (!ignoreNew || !pet.isNew()) {
+                String compName = pet.getPetName();
+                compName = compName.toLowerCase();
+                if (compName.equals(name)) {
+                    return pet;
+                }
+            }
+        }
+        return null;
+    }
 }
 
