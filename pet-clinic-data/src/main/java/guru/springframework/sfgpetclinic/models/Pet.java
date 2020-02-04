@@ -35,6 +35,7 @@ public class Pet extends BaseEntity {
     private LocalDate birthDate;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
+    @OrderBy("date descending")
     private Set<Visit> visits = new HashSet<>();
 
 }

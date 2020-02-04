@@ -1,7 +1,10 @@
 package guru.springframework.sfgpetclinic.repositories;
 
 import guru.springframework.sfgpetclinic.models.Visit;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface VisitRepository extends CrudRepository<Visit, Long> {
+import java.util.List;
+
+public interface VisitRepository extends JpaRepository<Visit, Long> {
+
 }
