@@ -19,6 +19,16 @@ public class Pet extends BaseEntity {
         super();
     }
 
+    @Builder
+    public Pet(Long id, String petName, PetType petType, Owner owner, LocalDate birthDate, Set<Visit> visits) {
+        super(id);
+        this.petName = petName;
+        this.petType = petType;
+        this.owner = owner;
+        this.birthDate = birthDate;
+        this.visits = visits;
+    }
+
     @Column(name = "pet_name")
     private String petName;
 
